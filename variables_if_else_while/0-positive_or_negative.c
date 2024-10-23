@@ -3,9 +3,10 @@
 #include <stdio.h>
 
 /**
- * main - Point d'entr�e du programme
- * Return: Toujours 0 (Succès)
+ * main - Entry point
+ * Return: Always 0 (Success)
  */
+
 int main(void)
 {
 	int n;
@@ -13,10 +14,10 @@ int main(void)
 	srand(time(0));
 	n = rand() - RAND_MAX / 2;
 	if (n > 0)
-	{ printf("%d est positif\n", n); }
+	{printf("%d is positive\n", n); }
 	else if (n == 0)
-	{printf("%d est zero\n", n); }
+	{printf("%d is zero\n", n); }
 	else
-	{printf("%d est négatif\n, ); }
+	{printf("%d is negative\n", n); }
 	return (0);
 }
