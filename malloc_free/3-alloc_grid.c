@@ -3,39 +3,37 @@
 
 /**
  * alloc_grid -  returns a pointer to a 2D array of integers
- * @width: first int
- * @height: second int
- * Return: NULL if fail or if int is 0
+ * @width: number of columns
+ * @height: number of rows
+ * Return: NULL if error or pointer to array
  */
 int **alloc_grid(int width, int height)
 {
-	int i, j, k, l;
+	int i, j;
 	int **a;
 
 	if (width <= 0 || height <= 0)
 		return (NULL);
+
 	a = malloc(sizeof(int *) * height);
 	if (a == NULL)
 	{
-		free(a);
 		return (NULL);
 	}
+
 	for (i = 0; i < height; i++)
+	{
 		a[i] = malloc(sizeof(int) * width);
-	if (a[i] == NULL)
-	{
-		for (j = i; j >= 0; j--)
+		if (a[i] == NULL)
 		{
+			for (j = 0; j > i; j++)
 			free(a[j]);
-			return (NULL);
+		free(a);
+		return (NULL);
 		}
-	}
-	for (k = 0; k < height; k++)
-	{
-		for (l = 0; l < width; l++)
-		{
-			a[k][l] = 0;
-		}
+
+	for (j = 0; j < width; j++)
+		a[i][j] = 0;
 	}
 	return (a);
 }
