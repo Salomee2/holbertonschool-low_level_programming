@@ -3,9 +3,10 @@
 #include <stdio.h>
 #include "3-calc.h"
 /**
- * main - prints the result of simple operations
+ * main - entry points of the program
  * @argc: number of arguments
  * @argv: array of pointers to arguments
+ * Return: 0 if success or exit with 98, 99, 100
  */
 int main(int argc, char *argv[])
 {
