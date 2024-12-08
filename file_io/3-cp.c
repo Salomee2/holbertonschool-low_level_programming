@@ -12,7 +12,7 @@ void check_io_stat(int fd, const char *filename, char mode) {
 			dprintf(STDERR_FILENO, "Error: Can't read from file %s\n", filename);
 			exit(98);
 		} else if (mode == 'w') {
-			dprintf(STDERR_FILENO, "Error: Can't write to file %s\n", filename);
+			dprintf(STDERR_FILENO, "Error: Can't write to %s\n", filename);
 			exit(99);
 		}
 	}
