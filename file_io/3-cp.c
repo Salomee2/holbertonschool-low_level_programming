@@ -4,6 +4,14 @@
 #include <unistd.h>
 #include <errno.h>
 #define BUFFER_SIZE 1024
+/**
+ * open_file - Opens a file.
+ * @filename: Name of the file to be opened.
+ * @flags: Flags used for opening the file.
+ * @mode: Mode used if the file is created.
+ *
+ * Return: The file descriptor of the opened file.
+ */
 int open_file(const char *filename, int flags, mode_t mode)
 {
 int fd = open(filename, flags, mode);
@@ -17,6 +25,12 @@ exit(98);
 }
 return (fd);
 }
+/**
+ * close_file - Closes a file descriptor.
+ * @fd: The file descriptor to be closed.
+ *
+ * Return: Nothing.
+ */
 void close_file(int fd)
 {
 if (close(fd) == -1)
@@ -25,7 +39,14 @@ dprintf(2, "Error: Can't close fd %d\n", fd);
 exit(100);
 }
 }
-int main(int argc, char *argv[])
+/**
+ * main - copies the content of a file to another file.
+ * @argc: Number of arguments passed.
+ * @argv: Array of arguments passed.
+ *
+ * Return: 0 on success.
+ */
+int main(int argc, char **argv)
 {
 int fd_from, fd_to, bytes_read, bytes_written;
 char buffer[BUFFER_SIZE];
