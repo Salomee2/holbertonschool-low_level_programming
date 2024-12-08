@@ -35,15 +35,20 @@ int open_dest_file(const char *filename) {
 
 void copy_file(int src, int dest) {
 	char buffer[BUFFER_SIZE];
-	ssize_t n_read, n_write;
+	ssize_t n_read, n_write, total_written;
 
 	while ((n_read = read(src, buffer, BUFFER_SIZE)) > 0) {
-		n_write = write(dest, buffer, n_read);
-		if (n_write != n_read) {
-			dprintf(STDERR_FILENO, "Error: Can't write to file descriptor %d\n", dest);
-			exit(99);
+		total_written = 0;
+		while (total_written < n_read) {
+			n_write = write(dest, buffer + total_written, n_read - total_written);
+			if (n_write == -1) {
+				dprintf(STDERR_FILENO, "Error: Can't write to file descriptor %d\n", dest);
+				exit(99);
+			}
+			total_written += n_write;
 		}
 	}
+
 	if (n_read == -1) {
 		dprintf(STDERR_FILENO, "Error: Can't read from file descriptor %d\n", src);
 		exit(98);
